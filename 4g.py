@@ -11,7 +11,7 @@ def login():
 	global browser
 	choice = 2
 	browser = webdriver.Chrome('C:\\Program Files (x86)\\Google\\Chrome\\chromedriver.exe')
-    #download chrome driver and put it in this path
+    	#download chrome driver and put it in this path
 	browser.maximize_window()
 	browser.get("http://smile.co.tz/scp")
 	username = browser.find_element_by_name("username")
