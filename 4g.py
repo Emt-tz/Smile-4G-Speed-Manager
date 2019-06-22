@@ -1,55 +1,56 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
-#user speed choice
-choice = int(input("Enter Speed(1, 2, 5, 21): "))
-browser = webdriver.Chrome('path to chrome web driver')
-browser.minimize_window()
-browser.get("http://smile.co.tz/scp")
+import sys
 
-username = browser.find_element_by_name("username")
-password = browser.find_element_by_name("password")
-#time.sleep(2)
 
-#Credentials
-username.send_keys("youremail")
-password.send_keys("yourpassword!")
+def login():
+	#user speed choice
+	#choice = int(input("Enter Speed(1, 2, 5, 21): "))
+	global choice 
+	global browser
+	choice = 2
+	browser = webdriver.Chrome('C:\\Program Files (x86)\\Google\\Chrome\\chromedriver.exe')
+    #download chrome driver and put it in this path
+	browser.maximize_window()
+	browser.get("http://smile.co.tz/scp")
+	username = browser.find_element_by_name("username")
+	password = browser.find_element_by_name("password")
+	#time.sleep(2)
 
-login_attempt = browser.find_element_by_xpath('//*[@id="loginform"]/input[4]').click()
-#time.sleep(1)
-manage = browser.find_element_by_xpath('//*[@id="content"]/div[4]/div[2]/div/div[2]/div[1]/div[2]/table[2]/tbody/tr[2]/td[4]/form/input').click()
-#changing the speed then closing out
-#time.sleep(2)
-if choice == 21:
-    upspeed = browser.find_element_by_xpath('//*[@id="category_speed21"]').click()
-    time.sleep(1)
-    confirm = browser.find_element_by_xpath('//*[@id="content"]/div[4]/div[2]/div/div[2]/div[2]/div/div/form/div[6]/div/input[6]').click()
-    #time.sleep(4)
-    print("Success")
-    browser.close()
-elif choice == 2:
-    upspeed = browser.find_element_by_xpath('//*[@id="category_speed2"]').click()
-    time.sleep(1)
-    confirm = browser.find_element_by_xpath('//*[@id="content"]/div[4]/div[2]/div/div[2]/div[2]/div/div/form/div[6]/div/input[6]').click()
-    #time.sleep(4)
-    print("Success")
-    browser.close()
-elif choice == 5:
-    upspeed = browser.find_element_by_xpath('//*[@id="category_speed5"]').click()
-    time.sleep(1)
-    confirm = browser.find_element_by_xpath('//*[@id="content"]/div[4]/div[2]/div/div[2]/div[2]/div/div/form/div[6]/div/input[6]').click()
-    #time.sleep(4)
-    print("Success")
-    browser.close()
-elif choice == 1:
-    upspeed = browser.find_element_by_xpath('//*[@id="category_speed1"]').click()
-    time.sleep(1)
-    confirm = browser.find_element_by_xpath('//*[@id="content"]/div[4]/div[2]/div/div[2]/div[2]/div/div/form/div[6]/div/input[6]').click()
-    #time.sleep(4)
-    print("Success")
-    browser.close()
-else:
-    import sys
-    sys.exit()
-exit()
-    
+	#Credentials
+	username.send_keys("email@email.com")
+	password.send_keys("password")
+
+	login_attempt = browser.find_element_by_xpath('//*[@id="loginform"]/input[4]').click(); time.sleep(2);
+
+def confirm():
+	return browser.find_element_by_xpath('//*[@id="content"]/div[4]/div[2]/div/div[2]/div[2]/div/div/form/div[6]/div/input[6]').click()
+
+def ChangeSpeed():
+	manage = browser.find_element_by_xpath('//*[@id="content"]/div[4]/div[2]/div/div[2]/div[1]/div[2]/table[2]/tbody/tr[2]/td[4]/form/input').click(); time.sleep(0.5);
+	if choice == 1:
+		return browser.find_element_by_xpath('//*[@id="category_speed1"]').click()
+	elif choice == 2:
+		return browser.find_element_by_xpath('//*[@id="category_speed2"]').click()
+	elif choice == 5:
+		return browser.find_element_by_xpath('//*[@id="category_speed5"]').click()
+	elif choice == 21:
+		return browser.find_element_by_xpath('//*[@id="category_speed21"]').click()
+	else:
+		return 0
+	
+def main():
+
+	login()
+	time.sleep(0.5)
+	ChangeSpeed()
+	time.sleep(0.5)
+	confirm()
+	browser.close()
+	sys.exit()
+
+main()
+
+	
+
