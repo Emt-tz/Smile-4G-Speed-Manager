@@ -6,7 +6,7 @@ import sys
 class Smile4g():
 
 	def login():
-		#user speed choice
+		
 		#choice = int(input("Enter Speed(1, 2, 5, 21): "))
 		global choice 
 		global browser
