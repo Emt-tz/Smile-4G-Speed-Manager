@@ -19,8 +19,8 @@ class Smile4g():
 		#time.sleep(2)
 
 		#Credentials
-		username.send_keys("peterkelvin16@gmail.com")
-		password.send_keys("Windows78!")
+		username.send_keys("example@email.com")
+		password.send_keys("password")
 
 		login_attempt = browser.find_element_by_xpath('//*[@id="loginform"]/input[4]').click(); time.sleep(2);
 
